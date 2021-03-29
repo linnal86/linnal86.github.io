@@ -3,12 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://linnali.com/tags/hugo-blog/</loc>
+    <lastmod>2021-03-28T11:42:01-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://linnali.com/</loc>
-    <lastmod>2021-03-20T11:21:43-04:00</lastmod>
+    <lastmod>2021-03-28T11:42:01-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/posts/my-journey-as-a-participant-with-recurse-center-part-one-of-two/</loc>
+    <lastmod>2021-03-28T11:42:01-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://linnali.com/posts/</loc>
+    <lastmod>2021-03-28T11:42:01-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/programming-journey/</loc>
+    <lastmod>2021-03-28T11:42:01-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/recurse-center/</loc>
+    <lastmod>2021-03-28T11:42:01-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/</loc>
+    <lastmod>2021-03-28T11:42:01-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/categories/</loc>
+    <lastmod>2021-03-20T11:21:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/categories/coding/</loc>
+    <lastmod>2021-03-20T11:21:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/portfolio/</loc>
+    <lastmod>2021-03-20T11:21:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/projects/</loc>
+    <lastmod>2021-03-20T11:21:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/software/</loc>
     <lastmod>2021-03-20T11:21:43-04:00</lastmod>
   </url>
   
@@ -18,8 +68,13 @@
   </url>
   
   <url>
-    <loc>https://linnali.com/categories/</loc>
-    <lastmod>2021-03-06T20:20:06-05:00</lastmod>
+    <loc>https://linnali.com/tags/web-applications/</loc>
+    <lastmod>2021-03-20T11:21:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/web-stacks/</loc>
+    <lastmod>2021-03-20T11:21:43-04:00</lastmod>
   </url>
   
   <url>
@@ -63,17 +118,57 @@
   </url>
   
   <url>
-    <loc>https://linnali.com/tags/</loc>
-    <lastmod>2021-03-06T20:20:06-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://linnali.com/tags/vscode/</loc>
     <lastmod>2021-03-06T20:20:06-05:00</lastmod>
   </url>
   
   <url>
+    <loc>https://linnali.com/tags/deploy-fullstack-app/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/categories/devops/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/digital-ocean/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/mern-stack/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/mongodb/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/nginx/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/nodejs/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/react/</loc>
+    <lastmod>2021-01-05T10:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linnali.com/tags/ssl-certificate/</loc>
     <lastmod>2021-01-05T10:34:04-04:00</lastmod>
   </url>
   

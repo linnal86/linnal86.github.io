@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MERN stack on Linna Li</title>
+    <link>https://linnali.com/tags/mern-stack/</link>
+    <description>Recent content in MERN stack on Linna Li</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Jan 2021 10:34:04 -0400</lastBuildDate>
+    
+	<atom:link href="https://linnali.com/tags/mern-stack/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet</title>
+      <link>https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/</guid>
+      <description>It took me 2 weeks to figure out how to deploy my fullstack nodejs react app. It uses the MERN stack - mongodb, express, react, and nodejs. I watched multiple youtube videos and read various blogs. I had to reference numerous different sources so here is a consolidated guide of how to do it.
+Digital Ocean Setup  I hosted my server on digitalocean. The alternatives includes Amazon AWS, Google Cloud, Siteground, Heroku, etc but I found that digitalocean was the easiest, most reliable and the cheapest in the long run.</description>
+    </item>
+    
+  </channel>
+</rss>

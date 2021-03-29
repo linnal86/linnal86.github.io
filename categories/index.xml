@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Linna Li</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Mar 2021 20:20:06 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 20 Mar 2021 11:21:43 -0400</lastBuildDate>
     
 	<atom:link href="https://linnali.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>coding</title>
+      <link>https://linnali.com/categories/coding/</link>
+      <pubDate>Sat, 20 Mar 2021 11:21:43 -0400</pubDate>
+      
+      <guid>https://linnali.com/categories/coding/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>journal</title>
@@ -17,6 +26,15 @@
       <pubDate>Sat, 06 Mar 2021 20:20:06 -0500</pubDate>
       
       <guid>https://linnali.com/categories/journal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://linnali.com/categories/devops/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/categories/devops/</guid>
       <description></description>
     </item>
     

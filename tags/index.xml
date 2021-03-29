@@ -6,10 +6,82 @@
     <description>Recent content in Tags on Linna Li</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Mar 2021 20:20:06 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 28 Mar 2021 11:42:01 -0400</lastBuildDate>
     
 	<atom:link href="https://linnali.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hugo blog</title>
+      <link>https://linnali.com/tags/hugo-blog/</link>
+      <pubDate>Sun, 28 Mar 2021 11:42:01 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/hugo-blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming journey</title>
+      <link>https://linnali.com/tags/programming-journey/</link>
+      <pubDate>Sun, 28 Mar 2021 11:42:01 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/programming-journey/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Recurse Center</title>
+      <link>https://linnali.com/tags/recurse-center/</link>
+      <pubDate>Sun, 28 Mar 2021 11:42:01 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/recurse-center/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>portfolio</title>
+      <link>https://linnali.com/tags/portfolio/</link>
+      <pubDate>Sat, 20 Mar 2021 11:21:43 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/portfolio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>projects</title>
+      <link>https://linnali.com/tags/projects/</link>
+      <pubDate>Sat, 20 Mar 2021 11:21:43 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/projects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>software</title>
+      <link>https://linnali.com/tags/software/</link>
+      <pubDate>Sat, 20 Mar 2021 11:21:43 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/software/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web applications</title>
+      <link>https://linnali.com/tags/web-applications/</link>
+      <pubDate>Sat, 20 Mar 2021 11:21:43 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/web-applications/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web stacks</title>
+      <link>https://linnali.com/tags/web-stacks/</link>
+      <pubDate>Sat, 20 Mar 2021 11:21:43 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/web-stacks/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>emoji</title>
@@ -71,6 +143,78 @@
       <pubDate>Sat, 06 Mar 2021 20:20:06 -0500</pubDate>
       
       <guid>https://linnali.com/tags/vscode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deploy fullstack app</title>
+      <link>https://linnali.com/tags/deploy-fullstack-app/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/deploy-fullstack-app/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Digital Ocean</title>
+      <link>https://linnali.com/tags/digital-ocean/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/digital-ocean/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MERN stack</title>
+      <link>https://linnali.com/tags/mern-stack/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/mern-stack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mongodb</title>
+      <link>https://linnali.com/tags/mongodb/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>https://linnali.com/tags/nginx/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nodejs</title>
+      <link>https://linnali.com/tags/nodejs/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>https://linnali.com/tags/react/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSL Certificate</title>
+      <link>https://linnali.com/tags/ssl-certificate/</link>
+      <pubDate>Tue, 05 Jan 2021 10:34:04 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/ssl-certificate/</guid>
       <description></description>
     </item>
     
