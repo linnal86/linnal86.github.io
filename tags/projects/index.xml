@@ -17,7 +17,7 @@
       <pubDate>Sat, 20 Mar 2021 11:21:43 -0400</pubDate>
       
       <guid>https://linnali.com/posts/software-projects/</guid>
-      <description>Software projects Athena flights  I worked on this project with @Joseph Tran . This is a web app built with Next.js, React and Typescript on the front-end. We used Postgres for the database and Typeorm with Apollo Server and Graphql on the back-end. We queried SpaceX&amp;rsquo;s api, then added flight information to the launches so users can choose flights to book based on destination and departure dates. I worked on both the front-end and back-end functionality to filter flights, authenticate users, cancel bookings.</description>
+      <description>Athena flights I worked on this project with @Joseph Tran . This is a web app built with Next.js, React and Typescript on the front-end. We used Postgres for the database and Typeorm with Apollo Server and Graphql on the back-end. We queried SpaceX&amp;rsquo;s api, then added flight information to the launches so users can choose flights to book based on destination and departure dates. I worked on both the front-end and back-end functionality to filter flights, authenticate users, cancel bookings.</description>
     </item>
     
   </channel>
