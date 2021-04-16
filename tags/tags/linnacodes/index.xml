@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linna Li</title>
-    <link>https://linnali.com/</link>
-    <description>Recent content on Linna Li</description>
+    <title>linnacodes on Linna Li</title>
+    <link>https://linnali.com/tags/linnacodes/</link>
+    <description>Recent content in linnacodes on Linna Li</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 09 Apr 2021 12:35:19 -0400</lastBuildDate>
     
-	<atom:link href="https://linnali.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://linnali.com/tags/linnacodes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -58,34 +58,6 @@ I signed up to participate from February 15th to May 7th or the &amp;ldquo;Sprin
       <guid>https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/</guid>
       <description>It took me 2 weeks to figure out how to deploy my fullstack nodejs react app. It uses the MERN stack - mongodb, express, react, and nodejs. I watched multiple youtube videos and read various blogs. I had to reference numerous different sources so here is a consolidated guide of how to do it.
 Digital Ocean Setup I hosted my server on digitalocean. The alternatives includes Amazon AWS, Google Cloud, Siteground, Heroku, etc but I found that digitalocean was the easiest, most reliable and the cheapest in the long run.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://linnali.com/drafts/business-categories/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://linnali.com/drafts/business-categories/</guid>
-      <description>Business categories
-Jeff Bezos - Amazon - online retail Bill Gates - Microsoft - computer software and solutions Warren Buffett - Investor, Aquisitions of other companies Bernard Arnault &amp;amp; Family - Louis Vuitton and Sephora Carlos Slim Helu &amp;amp; Family - Telecom, construction, consumer goods, real estate Amancio Ortega - Zara - clothing retail Larry Ellison - Oracle, Hydroponics, Tesla Mark Zuckerberg - facebook (online address book) Michael Bloomberg - bloomberg (financial news and media) Larry Page - Google Chalres Koch -Crude Oil, Fertilizer, Chemicals, Homegoods David Koch - Crude Oil, Fertilizer, Chemicals, Homegoods Mukesh Ambani - Gas&amp;amp; Oil, Telecom Sergy Brin - Google Francoise Bettencourt Meyers &amp;amp; Family - L&amp;rsquo;Oreal Jim Walton - Walmart and Arvest Bank Alice Walton - Walmart Rob Walton - Walmart Steve Ballmer - Microsoft and NBA LA Clippers Ma Huateng - TECENT (mobile messaging) Jack Ma - Alibaba (online retail, mobil payments) Hui Ka Yan - Real Estate Development Karl Albrecht Jr.</description>
-    </item>
-    
-    <item>
-      <title>All Posts</title>
-      <link>https://linnali.com/archives/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://linnali.com/archives/</guid>
-      <description>archives</description>
-    </item>
-    
-    <item>
-      <title>Search</title>
-      <link>https://linnali.com/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://linnali.com/search/</guid>
-      <description>search</description>
     </item>
     
   </channel>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>learn to code on Linna Li</title>
+    <link>https://linnali.com/tags/learn-to-code/</link>
+    <description>Recent content in learn to code on Linna Li</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Mar 2021 11:42:01 -0400</lastBuildDate>
+    
+	<atom:link href="https://linnali.com/tags/learn-to-code/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My journey as a participant with Recurse Center (Part One of Two)</title>
+      <link>https://linnali.com/posts/my-journey-as-a-participant-with-recurse-center-part-one-of-two/</link>
+      <pubDate>Sun, 28 Mar 2021 11:42:01 -0400</pubDate>
+      
+      <guid>https://linnali.com/posts/my-journey-as-a-participant-with-recurse-center-part-one-of-two/</guid>
+      <description>Time really flies! It&amp;rsquo;s been six weeks since I&amp;rsquo;ve become a participant at the Recurse Center (RC). It&amp;rsquo;s an amazing space for new or experienced programmers, developers, or anyone who wants to spend time learning more about code. I&amp;rsquo;ve met so many motivated and talented individuals whom have inspired me to build more and code more frequently.
+I signed up to participate from February 15th to May 7th or the &amp;ldquo;Spring 1 2021 batch&amp;rdquo; as we call it.</description>
+    </item>
+    
+  </channel>
+</rss>

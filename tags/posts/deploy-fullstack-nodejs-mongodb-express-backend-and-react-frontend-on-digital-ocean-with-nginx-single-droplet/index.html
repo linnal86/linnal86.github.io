@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet | Linna Li</title>
+
+<meta name="keywords" content="fullstack app, web deployment, digital ocean, ssl certificate, certbot, nginx, mern stack, nodejs, react, mongodb, linnacodes, linnalicodes" />
+<meta name="description" content="Step by step guide on how to deploy on a fullstack web application on a single Digital Ocean droplet">
+<meta name="author" content="Linna Li">
+<link rel="canonical" href="https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/" />
+<link href="/assets/css/stylesheet.min.9a39aef9463c0b586db644effcd6e20d267f4b1b540efab1a188c8f84d3743ba.css" integrity="sha256-mjmu&#43;UY8C1httkTv/NbiDSZ/SxtUDvqxoYjI&#43;E03Q7o=" rel="preload stylesheet"
+    as="style">
+
+
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐣</text></svg>" />
+<link rel="apple-touch-icon" href="https://linnali.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://linnali.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.68.3" />
+
+
+<meta property="og:title" content="Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet" />
+<meta property="og:description" content="Step by step guide on how to deploy on a fullstack web application on a single Digital Ocean droplet" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/" />
+<meta property="article:published_time" content="2021-01-05T10:34:04-04:00" />
+<meta property="article:modified_time" content="2021-01-05T10:34:04-04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet"/>
+<meta name="twitter:description" content="Step by step guide on how to deploy on a fullstack web application on a single Digital Ocean droplet"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet",
+      "item": "https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet",
+  "name": "Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet",
+  "description": "It took me 2 weeks to figure out how to deploy my fullstack nodejs react app. It uses the MERN stack - mongodb, express, react, and nodejs. I watched multiple youtube videos and …",
+  "keywords": [
+    "fullstack app", "web deployment", "digital ocean", "ssl certificate", "certbot", "nginx", "mern stack", "nodejs", "react", "mongodb", "linnacodes", "linnalicodes"
+  ],
+  "articleBody": "It took me 2 weeks to figure out how to deploy my fullstack nodejs react app. It uses the MERN stack - mongodb, express, react, and nodejs. I watched multiple youtube videos and read various blogs. I had to reference numerous different sources so here is a consolidated guide of how to do it.\nDigital Ocean Setup I hosted my server on digitalocean. The alternatives includes Amazon AWS, Google Cloud, Siteground, Heroku, etc but I found that digitalocean was the easiest, most reliable and the cheapest in the long run.\nCreate Droplet on Digital Ocean Create a Digital Ocean account and then create a droplet. Choose the latest ubuntu image from Distrubutions, choose the plan and monthly rate that fits your needs. For toy apps or hobby projects you can just choose the basic plan and the cheapest monthly rate. You can always upgrade later.\nA droplet is a virtual private server (VPS).\nI DID NOT select mongodb from the marketplace. For some reason it works better for me if I manually install it on the droplet.\nChoose ubuntu, basic plan, and lowest monthly option You can choose either SSH keys or password. The password option is the fastest. Just create a password and that will be what you’ll use to login in when you ssh into the vps ubuntu linux distribution. You can change it to ssh later on Adding a domain to your application. if you want to get a SSL certificate from LetsEncrypt you will need a domain name. LetsEncrypt does not give certificates to raw ip address. You may be able to find other certificate providers who will give certificates for raw ips but I don’t know which ones\nOn digitalocean, on the sidebar go to  Networking Enter yourdomainname.com and add Add an A record for @ and www to your droplet.\n Add @ under HOSTNAME, select your droplet under WILL DIRECT TO and click Create Record Add www under HOSTNAME, select your droplet under WILL DIRECT TO and click Create Record  Go to domain registrar, (I use Namecheap), add the nameservers to the custom DNS section\nThis will take anywhere between 15 - 20 minutes to propogate. It may take longer. Check https://www.whatsmydns.net/ to see propgation status of your domain name.\nSSH into droplet and install mongodb, node, nginx and pm2 SSH into the vps ubuntu linux distribution by opening your terminal if your on mac or linux with the ip address generated by digitalocean. This can be found on the droplet next to the name of the droplet\nssh root@your-ip-address-from-digitalocean-next-to-droplet Enter y when terminal asks\nAre you sure you want to conitnue connecting (yes/no/[fingerprint])?\nThen it will ask you for your the root password you created in the Authentication section.\nNow you’re logged in.\nI installed mongodb manually and did not install it from the marketplace.\nsudo apt update sudo apt upgrade sudo apt install mongodb sudo systemctl status mongodb Install Node/NPM. Installing node will also install NPM in most cases. if not then also install npm Here is a link to the digitalocean node install guide for your reference\ncurl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - sudo apt install nodejs sudo apt install build-essential #if you do not have npm after installing node npm install npm@latest -g #check version node -v npm -v Install NGINX, a opensource web server. NGINX can be used as a reverse proxy, it connects server to the internet and provides protection between requests.\n#option 1 for installing nginx sudo apt install nginx #option 2 for installing nginx sudo apt-get install nginx -y Add SSL with LetsEncrypt To get commands got to Certbot website and click on Get Certbot instructions. Select the software and system to get the instructions you need to run on the droplet.\nsudo snap install core; sudo snap refresh core sudo snap install --classic certbot sudo ln -s /snap/bin/certbot /usr/bin/certbot # recommended option sudo certbot --nginx # Y to Terms of Service to register with ACEM server # Y or N to share eamil with Electronic Frontier Foundation # domainname.com to No names wer found in your configuration files. Please enter in your domain name(s) # conservative option, if you want to make changes to nginx configuration by hand sudo certbot certonly --nginx # auto renew certificates before they expire sudo certbot renew --dry-run Go to your domainname.com and you should see the default nginx page\nUpdate NGINX configuration file to direct traffic #update nginx configuration file using nano, vim, or another editor sudo nano /etc/nginx/sites-available/default Copy in the following into the file you just opened. update the values for domainname.com to be your own and port to the port you want to run on.\nCopy into first server object and comment out\n listen 80 default_server; listen [::]:80 default_server;  MAKE SURE to copy into second server object also\nThe location /api is for routing calls to the api to the node server For this example I’m using localhost:5000 (port 5000) for my frontend and localhost:5001 (port 5001) for my backend\nserver { root /var/www/html; server_name domainname.com; location / { proxy_pass http://localhost:5000; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $host; proxy_set_header X-NginX-Proxy true; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection “upgrade”; proxy_max_temp_file_size 0; proxy_redirect off; proxy_read_timeout 240s; } location /api { proxy_pass http://localhost:5001; } } NGINX works with Ubuntu firewall ufw. type ufw app list to see options:\n Nginx-Full — Enables both ports 22 and 88 for HTTP and HTTPS access, respectively. Nginx-HTTP — Enables port 22 for HTTP only. Nginx-HTTPS — Enables port 80 \u0026 HTTPS only. OpenSSH  # Enable https ports for nginx on ubuntu firewall sudo ufw enable ufw allow 'Nginx HTTPS' ufw status # checks status of firewall # Check NGINX config sudo nginx -t # Restart NGINX #option 1 to restart nginx sudo service nginx restart #option 2 to restart nginx sudo systemctl restart nginx #other nginx commands sudo systemctl status nginx sudo systemctl stop nginx Create a Hello.js Application to Test Nginx configuration cd ~ nano hello.js const http = require('http'); const hostname = 'localhost'; const port = 5000; const server = http.createServer((req, res) = { res.statusCode = 200; res.setHeader('Content-Type', 'text/plain'); res.end('Hello World!\\n'); }); server.listen(port, hostname, () = { console.log(`Server running at http://${hostname}:${port}/`); }); node hello.js Go to your domainname.com and you should see\n Hello World\n Install PM2 and Serve   PM2 is a process manager for nodejs applications with built-in load balancer. it keeps the app running in the background\n  Serve is for the React frontend app\n  sudo npm install pm2 -g sudo npm i -g serve #you can test out pm2 with hello.js pm2 start hello.js #you can see the status of pm2 using pm2 ps # Other pm2 commands pm2 show app.js pm2 status pm2 restart app.js pm2 stop app.js pm2 logs (Show log stream) pm2 flush (Clear logs) # To make sure app starts when reboot pm2 startup ubuntu Add the frontend React app Change your apiUrl to a realtive path, preferrably just “/api” This will make it so that your apiEndpoint will be /api/user for the user route.\n# An example will be that your React app will request either axios.post(\"/api/users\", userVariable) # or it will be the following if you create wrap axios in a httpService http.post(\"/api/users\", userVariable) Add the a proxy variable under the eslintConfig in package.json so that in the dev environment the apiUrl is still routing correctly\n \"eslintConfig\": { \"extends\": \"react-app\" }, \"proxy\": { \"/api\": { \"target\": \"http://localhost:3900\" } }, Build your react application and move it to your droplet ubuntu linux distribution server\nnpm run build #check ufw status, if enabled you have to disable temporarily sudo ufw disable #option 1 for moving build folder into droplet sudo rsync -azv build root@droplet-ip-address:/var/www/html/ #if you want to move it into the home folder sudo rsync -azv build root@droplet-ip-address:~ #option 2 for moving build folder into droplet sudo scp -r build/ root@droplet-ip-address:/var/www/html/ #after moving the files you can enable again sudo ufw enable # try the follow first to serve frontend to see if it works serve -s /var/www/html/build/ # pm2 to serve continuously pm2 start serve -- -s /var/www/html/build/ Set up nodejs backend Clone your backend from Github and start your app to make sure it’s working\ngit clone your-backend-repo-name.git cd your-backend-repo-name npm install May need to set up environment variable if you have them. Create your relevant env, toml, json files for environment variable In your repo folder create a .env file if you’re using dot-env.\ntouch .env nano .env # copy-paste in your environment variables. Run the backend to see if it works\nnode index.js # haven't configured a script for running the app npm start # if you've set up a start script ctrl-C # to stop app Your application should run. Make sure it is running before moving on to the next step. Go to your https://domainname.com/api. Page should display Cannot GET /api\n#run the backend with pm2 to have it run in the background sudo pm2 start index.js Conclusion # To make sure app starts when reboot pm2 startup ubuntu There are a lot of different ways you can host your fullstack, frontend, backend applications and I choose put frontend and backend on a single droplet on digital ocean. If there is anything confusing or I got something wrong please let me know. Please also let me know if you find this helpful. Feel free to leave your comments in my corresponding gist\u0026rsquo;s comment section . Thanks!\nSources:\nYoutube: Full Node.js Deployment - NGINX, SSL with Lets Encrypt Github Gist: Nodejs deployment PM2, NGINX, LetsEncrypt Youtube: Plan, Code, Deploy a Startup in 2 Hours ~ deploy instructions @ 1:35:00 Hackernoon: Finish deploying react app on digitalocean Digital Ocean: Set Up nodejs application Digital Ocean: Run nodejs server with Nginx Medium: Deploy fullstack with NGINX Digitalocean Dev.to: Fullstack using React, Strapi, NGINX, MongoDB on Digitalocean Configure nginx for nodejs backend and React frontend Freecodecamp: deploy first fullstack web app ",
+  "wordCount" : "1651",
+  "inLanguage": "en",
+  "datePublished": "2021-01-05T10:34:04-04:00",
+  "dateModified": "2021-01-05T10:34:04-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Linna Li"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Linna Li",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://linnali.com/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://linnali.com/" accesskey="h" title="Linna Li (Alt + H)">Linna Li</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                
+                
+            </span>
+        </div>
+        <ul id="menu" onscroll="menu_on_scroll()">
+            <li>
+                <a href="https://linnali.com/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://linnali.com/archives" title="All Posts">
+                    <span>All Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://linnali.com/categories" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://linnali.com/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://linnali.com/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+<div class="breadcrumbs">
+
+    <a href="https://linnali.com/">Home</a>
+</div>
+
+    <h1 class="post-title">
+      Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet
+    </h1>
+    <div class="post-description">
+      Step by step guide on how to deploy on a fullstack web application on a single Digital Ocean droplet
+    </div>
+    <div class="post-meta">
+
+January 5, 2021&nbsp;·&nbsp;Linna Li
+
+</div>
+  </header> 
+
+  <div class="toc">
+    <details >
+      <summary accesskey="c" title="(Alt + C)">
+        <div class="details">Table of Contents</div>
+      </summary>
+      <div class="inner"><ul><li>
+        <a href="#digital-ocean-setup" aria-label="Digital Ocean Setup">Digital Ocean Setup</a></li><li>
+        <a href="#create-droplet-on-digital-ocean" aria-label="Create Droplet on Digital Ocean">Create Droplet on Digital Ocean</a></li><li>
+        <a href="#adding-a-domain-to-your-application" aria-label="Adding a domain to your application.">Adding a domain to your application.</a></li><li>
+        <a href="#ssh-into-droplet-and-install-mongodb-node-nginx-and-pm2" aria-label="SSH into droplet and install mongodb, node, nginx and pm2">SSH into droplet and install mongodb, node, nginx and pm2</a><ul>
+            <li>
+        <a href="#install-nginx-a-opensource-web-server" aria-label="Install NGINX, a opensource web server.">Install NGINX, a opensource web server.</a></li><li>
+        <a href="#add-ssl-with-letsencrypt" aria-label="Add SSL with LetsEncrypt">Add SSL with LetsEncrypt</a></li><li>
+        <a href="#update-nginx-configuration-file-to-direct-traffic" aria-label="Update NGINX configuration file to direct traffic">Update NGINX configuration file to direct traffic</a></li><li>
+        <a href="#create-a-hellojs-application-to-test-nginx-configuration" aria-label="Create a Hello.js Application to Test Nginx configuration">Create a Hello.js Application to Test Nginx configuration</a></li><li>
+        <a href="#install-pm2-and-serve" aria-label="Install PM2 and Serve">Install PM2 and Serve</a></li></ul>
+    </li><li>
+        <a href="#add-the-frontend-react-app" aria-label="Add the frontend React app">Add the frontend React app</a></li><li>
+        <a href="#set-up-nodejs-backend" aria-label="Set up nodejs backend">Set up nodejs backend</a></li><li>
+        <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li></ul>
+      </div>
+    </details>
+  </div>
+  <div class="post-content">
+<p>It took me 2 weeks to figure out how to deploy my fullstack nodejs react app. It uses the MERN stack - mongodb, express, react, and nodejs. I watched multiple youtube videos and read various blogs. I had to reference numerous different sources so here is a consolidated guide of how to do it.</p>
+<h2 id="digital-ocean-setup">Digital Ocean Setup<a hidden class="anchor" aria-hidden="true" href="#digital-ocean-setup">#</a></h2>
+<p>I hosted my server on digitalocean.
+The alternatives includes Amazon AWS, Google Cloud, Siteground, Heroku, etc but I found that digitalocean was the easiest, most reliable and the cheapest in the long run.</p>
+<h2 id="create-droplet-on-digital-ocean">Create Droplet on Digital Ocean<a hidden class="anchor" aria-hidden="true" href="#create-droplet-on-digital-ocean">#</a></h2>
+<p>Create a Digital Ocean account and then create a droplet. Choose the latest ubuntu image from Distrubutions, choose the plan and monthly rate that fits your needs. For toy apps or hobby projects you can just choose the basic plan and the cheapest monthly rate. You can always upgrade later.</p>
+<p>A droplet is a virtual private server (VPS).</p>
+<p>I DID NOT select mongodb from the marketplace. For some reason it works better for me if I manually install it on the droplet.</p>
+<p><em>Choose ubuntu, basic plan, and lowest monthly option</em>
+<img src="/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/digitalocean_choose_image.png" alt="choose_image"></p>
+<p><em>You can choose either SSH keys or password. The password option is the fastest. Just create a password and that will be what you&rsquo;ll use to login in when you ssh into the vps ubuntu linux distribution. You can change it to ssh later on</em>
+<img src="/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/digitalocean_authentication.png" alt="authentication"></p>
+<h2 id="adding-a-domain-to-your-application">Adding a domain to your application.<a hidden class="anchor" aria-hidden="true" href="#adding-a-domain-to-your-application">#</a></h2>
+<p><em>if you want to get a SSL certificate from LetsEncrypt you will need a domain name. LetsEncrypt does not give certificates to raw ip address. You may be able to find other certificate providers who will give certificates for raw ips but I don&rsquo;t know which ones</em></p>
+<p>On digitalocean, on the sidebar go to &gt; Networking
+Enter yourdomainname.com and add
+Add an A record for @ and www to your droplet.</p>
+<ol>
+<li>Add @ under HOSTNAME, select your droplet under WILL DIRECT TO and click <em>Create Record</em></li>
+<li>Add www under HOSTNAME, select your droplet under WILL DIRECT TO and click <em>Create Record</em></li>
+</ol>
+<p>Go to domain registrar, (I use Namecheap)<!-- raw HTML omitted -->, add the nameservers to the custom DNS section</p>
+<p><img src="/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/namecheap_customdns.png" alt="customdns"></p>
+<p>This will take anywhere between 15 - 20 minutes to propogate. It may take longer. Check <a href="https://www.whatsmydns.net/">https://www.whatsmydns.net/</a> to see propgation status of your domain name.</p>
+<h2 id="ssh-into-droplet-and-install-mongodb-node-nginx-and-pm2">SSH into droplet and install mongodb, node, nginx and pm2<a hidden class="anchor" aria-hidden="true" href="#ssh-into-droplet-and-install-mongodb-node-nginx-and-pm2">#</a></h2>
+<p>SSH into the vps ubuntu linux distribution by opening your terminal if your on mac or linux with the ip address generated by digitalocean. This can be found on the droplet next to the name of the droplet</p>
+<pre><code>ssh root@your-ip-address-from-digitalocean-next-to-droplet
+</code></pre><p>Enter y when terminal asks</p>
+<p><code>Are you sure you want to conitnue connecting (yes/no/[fingerprint])?</code></p>
+<p>Then it will ask you for your the root password you created in the Authentication section.</p>
+<p>Now you&rsquo;re logged in.</p>
+<p>I installed mongodb manually and did not install it from the marketplace.</p>
+<pre><code>sudo apt update
+sudo apt upgrade
+sudo apt install mongodb
+sudo systemctl status mongodb
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Install Node/NPM. Installing node will also install NPM in most cases. if not then also install npm
+Here is a link to the <a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04" target="_blank">digitalocean node install guide</a>
+ for your reference</p>
+<pre><code>curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt install nodejs
+sudo apt install build-essential
+
+#if you do not have npm after installing node
+npm install npm@latest -g
+
+#check version
+node -v
+npm -v
+
+</code></pre><h3 id="install-nginx-a-opensource-web-server">Install NGINX, a opensource web server.<a hidden class="anchor" aria-hidden="true" href="#install-nginx-a-opensource-web-server">#</a></h3>
+<p>NGINX can be used as a reverse proxy, it connects server to the internet and provides protection between requests.</p>
+<pre><code>#option 1 for installing nginx
+sudo apt install nginx
+
+#option 2 for installing nginx
+sudo apt-get install nginx -y
+</code></pre><h3 id="add-ssl-with-letsencrypt">Add SSL with LetsEncrypt<a hidden class="anchor" aria-hidden="true" href="#add-ssl-with-letsencrypt">#</a></h3>
+<p>To get commands got to <a href="https://certbot.eff.org" target="_blank">Certbot website</a>
+ and click on <em>Get Certbot instructions</em>. Select the software and system to get the instructions
+you need to run on the droplet.</p>
+<p><img src="/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/certbot_ssl_instructions.png" alt="ssl_instructions"></p>
+<pre><code>sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+# recommended option
+sudo certbot --nginx
+# Y to Terms of Service to register with ACEM server
+# Y or N to share eamil with Electronic Frontier Foundation
+# domainname.com to No names wer found in your configuration files. Please enter in your domain name(s)
+
+# conservative option, if you want to make changes to nginx configuration by hand
+sudo certbot certonly --nginx
+
+# auto renew certificates before they expire
+sudo certbot renew --dry-run
+
+</code></pre><p><em>Go to your domainname.com and you should see the default nginx page</em></p>
+<p><img src="/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/nginx_default.png" alt="nginx_default"></p>
+<h3 id="update-nginx-configuration-file-to-direct-traffic">Update NGINX configuration file to direct traffic<a hidden class="anchor" aria-hidden="true" href="#update-nginx-configuration-file-to-direct-traffic">#</a></h3>
+<pre><code>#update nginx configuration file using nano, vim, or another editor
+sudo nano /etc/nginx/sites-available/default
+</code></pre><p><em>Copy in the following into the file you just opened. update the values for domainname.com to be your own and port to the port you want to run on.</em></p>
+<p><em>Copy into first server object and comment out</em></p>
+<ul>
+<li>listen 80 default_server;</li>
+<li>listen [::]:80 default_server;</li>
+</ul>
+<p><em>MAKE SURE to copy into second server object also</em></p>
+<p>The location /api is for routing calls to the api to the node server
+For this example I&rsquo;m using localhost:5000 (port 5000) for my frontend and localhost:5001 (port 5001) for my backend</p>
+<pre><code>server {
+
+ root /var/www/html;
+ server_name domainname.com;
+
+
+ location / {
+
+ proxy_pass http://localhost:5000;
+ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+ proxy_set_header Host $host;
+ proxy_set_header X-NginX-Proxy true;
+ proxy_http_version 1.1;
+ proxy_set_header Upgrade $http_upgrade;
+ proxy_set_header Connection “upgrade”;
+ proxy_max_temp_file_size 0;
+ proxy_redirect off;
+ proxy_read_timeout 240s;
+ }
+
+ location /api {
+    proxy_pass http://localhost:5001;
+ }
+}
+</code></pre><p>NGINX works with Ubuntu firewall ufw. type ufw app list to see options:</p>
+<ul>
+<li>Nginx-Full — Enables both ports 22 and 88 for HTTP and HTTPS access, respectively.</li>
+<li>Nginx-HTTP — Enables port 22 for HTTP only.</li>
+<li>Nginx-HTTPS — Enables port 80 &amp; HTTPS only.</li>
+<li>OpenSSH</li>
+</ul>
+<pre><code># Enable https ports for nginx on ubuntu firewall
+sudo ufw enable
+ufw allow 'Nginx HTTPS'
+ufw status # checks status of firewall
+
+# Check NGINX config
+sudo nginx -t
+
+# Restart NGINX
+#option 1 to restart nginx
+sudo service nginx restart
+#option 2 to restart nginx
+sudo systemctl restart nginx
+
+#other nginx commands
+sudo systemctl status nginx
+sudo systemctl stop nginx
+
+</code></pre><h3 id="create-a-hellojs-application-to-test-nginx-configuration">Create a Hello.js Application to Test Nginx configuration<a hidden class="anchor" aria-hidden="true" href="#create-a-hellojs-application-to-test-nginx-configuration">#</a></h3>
+<pre><code>cd ~
+nano hello.js
+</code></pre><pre><code>const http = require('http');
+
+const hostname = 'localhost';
+const port = 5000;
+
+const server = http.createServer((req, res) =&gt; {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World!\n');
+});
+
+server.listen(port, hostname, () =&gt; {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+</code></pre><pre><code>node hello.js
+</code></pre><p>Go to your domainname.com and you should see</p>
+<blockquote>
+<p><em>Hello World</em></p>
+</blockquote>
+<h3 id="install-pm2-and-serve">Install PM2 and Serve<a hidden class="anchor" aria-hidden="true" href="#install-pm2-and-serve">#</a></h3>
+<ul>
+<li>
+<p>PM2 is a process manager for nodejs applications with built-in load balancer. it keeps the app running in the background</p>
+</li>
+<li>
+<p>Serve is for the React frontend app</p>
+</li>
+</ul>
+<pre><code>sudo npm install pm2 -g
+sudo npm i -g serve
+
+#you can test out pm2 with hello.js
+pm2 start hello.js
+
+#you can see the status of pm2 using
+pm2 ps
+
+# Other pm2 commands
+pm2 show app.js
+pm2 status
+pm2 restart app.js
+pm2 stop app.js
+pm2 logs (Show log stream)
+pm2 flush (Clear logs)
+
+# To make sure app starts when reboot
+pm2 startup ubuntu
+</code></pre><h2 id="add-the-frontend-react-app">Add the frontend React app<a hidden class="anchor" aria-hidden="true" href="#add-the-frontend-react-app">#</a></h2>
+<p>Change your apiUrl to a realtive path, preferrably just &ldquo;/api&rdquo;
+This will make it so that your apiEndpoint will be /api/user for the user route.</p>
+<pre><code># An example will be that your React app will request either
+axios.post(&quot;/api/users&quot;, userVariable)
+
+# or it will be the following if you create wrap axios in a httpService
+http.post(&quot;/api/users&quot;, userVariable)
+</code></pre><p>Add the a proxy variable under the eslintConfig in package.json so that in the dev environment the apiUrl is still routing correctly</p>
+<pre><code>  &quot;eslintConfig&quot;: {
+    &quot;extends&quot;: &quot;react-app&quot;
+  },
+  &quot;proxy&quot;: {
+    &quot;/api&quot;: {
+      &quot;target&quot;: &quot;http://localhost:3900&quot;
+    }
+  },
+</code></pre><p>Build your react application and move it to your droplet ubuntu linux distribution server</p>
+<pre><code>npm run build
+
+#check ufw status, if enabled you have to disable temporarily
+sudo ufw disable
+
+#option 1 for moving build folder into droplet
+sudo rsync -azv build root@droplet-ip-address:/var/www/html/
+
+#if you want to move it into the home folder
+sudo rsync -azv build root@droplet-ip-address:~
+
+#option 2 for moving build folder into droplet
+sudo scp -r build/ root@droplet-ip-address:/var/www/html/
+
+#after moving the files you can enable again
+sudo ufw enable
+</code></pre><pre><code># try the follow first to serve frontend to see if it works
+serve -s /var/www/html/build/
+
+# pm2 to serve continuously
+pm2 start serve -- -s /var/www/html/build/
+</code></pre><h2 id="set-up-nodejs-backend">Set up nodejs backend<a hidden class="anchor" aria-hidden="true" href="#set-up-nodejs-backend">#</a></h2>
+<p>Clone your backend from Github and start your app to make sure it&rsquo;s working</p>
+<pre><code>git clone your-backend-repo-name.git
+cd your-backend-repo-name
+npm install
+</code></pre><p>May need to set up environment variable if you have them.
+Create your relevant env, toml, json files for environment variable
+In your repo folder create a .env file if you&rsquo;re using dot-env.</p>
+<pre><code>touch .env
+nano .env
+# copy-paste in your environment variables.
+</code></pre><p>Run the backend to see if it works</p>
+<pre><code>node index.js # haven't configured a script for running the app
+npm start # if you've set up a start script
+ctrl-C # to stop app
+</code></pre><p>Your application should run. Make sure it is running before moving on to the next step. Go to your <a href="https://domainname.com/api">https://domainname.com/api</a>. Page should display <em>Cannot GET /api</em></p>
+<pre><code>#run the backend with pm2 to have it run in the background
+sudo pm2 start index.js
+</code></pre><h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<pre><code># To make sure app starts when reboot
+pm2 startup ubuntu
+</code></pre><p>There are a lot of different ways you can host your fullstack, frontend, backend applications and I choose put frontend and backend on a single droplet on digital ocean. If there is anything confusing or I got something wrong please let me know. Please also let me know if you find this helpful. Feel free to leave your comments in my corresponding <a href="https://gist.github.com/linnali577/2768fabac6c88ba5f5afce5c4191278e" target="_blank">gist&amp;rsquo;s comment section</a>
+.
+Thanks!</p>
+<p>Sources:</p>
+<p><a href="https://www.youtube.com/watch?v=oykl1Ih9pMg&amp;ab_channel=TraversyMedia" target="_blank">Youtube: Full Node.js Deployment - NGINX, SSL with Lets Encrypt</a>
+</p>
+<p><a href="https://gist.github.com/bradtraversy/cd90d1ed3c462fe3bddd11bf8953a896" target="_blank">Github Gist: Nodejs deployment PM2, NGINX, LetsEncrypt</a>
+</p>
+<p><a href="https://www.youtube.com/watch?v=lauywdXKEXI&amp;ab_channel=freeCodeCamp.org" target="_blank">Youtube: Plan, Code, Deploy a Startup in 2 Hours ~ deploy instructions @ 1:35:00</a>
+</p>
+<p><a href="https://hackernoon.com/start-to-finish-deploying-a-react-app-on-digitalocean-bcfae9e6d01b" target="_blank">Hackernoon: Finish deploying react app on digitalocean</a>
+</p>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04" target="_blank">Digital Ocean: Set Up nodejs application</a>
+</p>
+<p><a href="https://www.digitalocean.com/community/questions/how-to-run-node-js-server-with-nginx" target="_blank">Digital Ocean: Run nodejs server with Nginx</a>
+</p>
+<p><a href="https://medium.com/front-end-weekly/deploy-fullstack-with-nginx-on-digital-ocean-ed1fbc92275f" target="_blank">Medium: Deploy fullstack with NGINX Digitalocean</a>
+</p>
+<p><a href="https://dev.to/jackrkelly/create-a-full-stack-web-application-using-react-strapi-nginx-mongodb-and-digitalocean-bkh" target="_blank">Dev.to: Fullstack using React, Strapi, NGINX, MongoDB on Digitalocean</a>
+</p>
+<p><a href="https://www.digitalocean.com/community/questions/configure-nginx-for-nodejs-backend-and-react-frontend-app" target="_blank">Configure nginx for nodejs backend and React frontend</a>
+</p>
+<p><a href="https://www.freecodecamp.org/news/develop-deploy-first-fullstack-web-app/" target="_blank">Freecodecamp: deploy first fullstack web app</a>
+</p>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://linnali.com/tags/linnacodes/">linnacodes</a></li>
+      <li><a href="https://linnali.com/tags/linnalicodes/">linnalicodes</a></li>
+      <li><a href="https://linnali.com/tags/certbot/">certbot</a></li>
+      <li><a href="https://linnali.com/tags/digital-ocean/">digital ocean</a></li>
+      <li><a href="https://linnali.com/tags/fullstack-app/">fullstack app</a></li>
+      <li><a href="https://linnali.com/tags/mern-stack/">mern stack</a></li>
+      <li><a href="https://linnali.com/tags/mongodb/">mongodb</a></li>
+      <li><a href="https://linnali.com/tags/nginx/">nginx</a></li>
+      <li><a href="https://linnali.com/tags/nodejs/">nodejs</a></li>
+      <li><a href="https://linnali.com/tags/react/">react</a></li>
+      <li><a href="https://linnali.com/tags/ssl-certificate/">ssl certificate</a></li>
+      <li><a href="https://linnali.com/tags/web-deployment/">web deployment</a></li>
+    </ul>
+    <nav class="paginav">
+      <a class="prev" href="https://linnali.com/posts/setting-up-my-hugo-blog/">
+        <span class="title">« Prev Page</span>
+        <br>
+        <span>Setting up my Hugo blog</span>
+      </a>
+    </nav>
+
+
+
+
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet on twitter"
+        href="https://twitter.com/intent/tweet/?text=Deploy%20fullstack%20Nodejs%20MongoDB%20Express%20backend%20and%20React%20frontend%20on%20Digital%20Ocean%20with%20NGINX%20single%20droplet&amp;url=https%3a%2f%2flinnali.com%2fposts%2fdeploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet%2f&amp;hashtags=fullstackapp%2cwebdeployment%2cdigitalocean%2csslcertificate%2ccertbot%2cnginx%2cmernstack%2cnodejs%2creact%2cmongodb%2clinnacodes%2clinnalicodes">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flinnali.com%2fposts%2fdeploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet%2f&amp;title=Deploy%20fullstack%20Nodejs%20MongoDB%20Express%20backend%20and%20React%20frontend%20on%20Digital%20Ocean%20with%20NGINX%20single%20droplet&amp;summary=Deploy%20fullstack%20Nodejs%20MongoDB%20Express%20backend%20and%20React%20frontend%20on%20Digital%20Ocean%20with%20NGINX%20single%20droplet&amp;source=https%3a%2f%2flinnali.com%2fposts%2fdeploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2flinnali.com%2fposts%2fdeploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet%2f&title=Deploy%20fullstack%20Nodejs%20MongoDB%20Express%20backend%20and%20React%20frontend%20on%20Digital%20Ocean%20with%20NGINX%20single%20droplet">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flinnali.com%2fposts%2fdeploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet on whatsapp"
+        href="https://api.whatsapp.com/send?text=Deploy%20fullstack%20Nodejs%20MongoDB%20Express%20backend%20and%20React%20frontend%20on%20Digital%20Ocean%20with%20NGINX%20single%20droplet%20-%20https%3a%2f%2flinnali.com%2fposts%2fdeploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Deploy fullstack Nodejs MongoDB Express backend and React frontend on Digital Ocean with NGINX single droplet on telegram"
+        href="https://telegram.me/share/url?text=Deploy%20fullstack%20Nodejs%20MongoDB%20Express%20backend%20and%20React%20frontend%20on%20Digital%20Ocean%20with%20NGINX%20single%20droplet&amp;url=https%3a%2f%2flinnali.com%2fposts%2fdeploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="https://linnali.com/">Linna Li</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>
