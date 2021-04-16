@@ -6,13 +6,24 @@
     <description>Recent content in Posts on Linna Li</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Mar 2021 11:42:01 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 09 Apr 2021 12:35:19 -0400</lastBuildDate>
     
 	<atom:link href="https://linnali.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>My journey as a participant with Recurse Center Part One of Two</title>
+      <title>Configure token authentication for git operations through GitHub</title>
+      <link>https://linnali.com/posts/configure_token_authentication_for_git_operations_through_github/</link>
+      <pubDate>Fri, 09 Apr 2021 12:35:19 -0400</pubDate>
+      
+      <guid>https://linnali.com/posts/configure_token_authentication_for_git_operations_through_github/</guid>
+      <description>Configure token authentication for git operations through GitHub GitHub has announced token authentication requirements for git operations . They will not support password authentication for git operations and will require using personal access tokens over HTTPS or SSH keys by August 13, 2021.
+The recommendation is to use personal access tokens and it is explained in this youtube video about personal access tokens .
+Setting up personal access tokens You can generate the personal access token in GitHub by going into &amp;gt;Settings &amp;gt;Developer settings &amp;gt;Personal access tokens</description>
+    </item>
+    
+    <item>
+      <title>My journey as a participant with Recurse Center (Part One of Two)</title>
       <link>https://linnali.com/posts/my-journey-as-a-participant-with-recurse-center-part-one-of-two/</link>
       <pubDate>Sun, 28 Mar 2021 11:42:01 -0400</pubDate>
       
@@ -46,7 +57,7 @@ I signed up to participate from February 15th to May 7th or the &amp;ldquo;Sprin
       
       <guid>https://linnali.com/posts/deploy-fullstack-nodejs-mongodb-express-backend-and-react-frontend-on-digital-ocean-with-nginx-single-droplet/</guid>
       <description>It took me 2 weeks to figure out how to deploy my fullstack nodejs react app. It uses the MERN stack - mongodb, express, react, and nodejs. I watched multiple youtube videos and read various blogs. I had to reference numerous different sources so here is a consolidated guide of how to do it.
-Digital Ocean Setup  I hosted my server on digitalocean. The alternatives includes Amazon AWS, Google Cloud, Siteground, Heroku, etc but I found that digitalocean was the easiest, most reliable and the cheapest in the long run.</description>
+Digital Ocean Setup I hosted my server on digitalocean. The alternatives includes Amazon AWS, Google Cloud, Siteground, Heroku, etc but I found that digitalocean was the easiest, most reliable and the cheapest in the long run.</description>
     </item>
     
   </channel>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo blog on Linna Li</title>
+    <title>hugo blog on Linna Li</title>
     <link>https://linnali.com/tags/hugo-blog/</link>
-    <description>Recent content in Hugo blog on Linna Li</description>
+    <description>Recent content in hugo blog on Linna Li</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Mar 2021 11:42:01 -0400</lastBuildDate>
@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>My journey as a participant with Recurse Center Part One of Two</title>
+      <title>My journey as a participant with Recurse Center (Part One of Two)</title>
       <link>https://linnali.com/posts/my-journey-as-a-participant-with-recurse-center-part-one-of-two/</link>
       <pubDate>Sun, 28 Mar 2021 11:42:01 -0400</pubDate>
       
