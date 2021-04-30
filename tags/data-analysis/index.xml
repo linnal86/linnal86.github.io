@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data analysis on Linna Li</title>
+    <link>https://linnali.com/tags/data-analysis/</link>
+    <description>Recent content in data analysis on Linna Li</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 24 Apr 2021 15:32:59 -0400</lastBuildDate>
+    
+	<atom:link href="https://linnali.com/tags/data-analysis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick reference for Data Analysis with Python</title>
+      <link>https://linnali.com/posts/quick_reference_for_data_analysis_with_python/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/posts/quick_reference_for_data_analysis_with_python/</guid>
+      <description>Quick reference for Data Analysis with Python This post is to reference to help those that are familiar with data analysis using python in Jupyter Notebook / Jupyter Lab. If you don&amp;rsquo;t have jupyter notebooks set up you will want to find another tutorial on how to install it and learn the basics of how to use it. Tutorials and references I&amp;rsquo;ve found helpful is the Data analysis with python content on Freecodecamp , and Data analysis in python on Youtube Corey Schafer on youtube .</description>
+    </item>
+    
+  </channel>
+</rss>

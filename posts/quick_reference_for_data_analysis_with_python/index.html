@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Quick reference for Data Analysis with Python | Linna Li</title>
+
+<meta name="keywords" content="jupyter notebook, jupyter lab, python, pandas, matplotlib, data analysis, linnacodes, linnalicodes" />
+<meta name="description" content="Reminder for methods and operations when working with data in Python Pandas">
+<meta name="author" content="Linna Li">
+<link rel="canonical" href="https://linnali.com/posts/quick_reference_for_data_analysis_with_python/" />
+<link href="/assets/css/stylesheet.min.9a39aef9463c0b586db644effcd6e20d267f4b1b540efab1a188c8f84d3743ba.css" integrity="sha256-mjmu&#43;UY8C1httkTv/NbiDSZ/SxtUDvqxoYjI&#43;E03Q7o=" rel="preload stylesheet"
+    as="style">
+
+
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐣</text></svg>" />
+<link rel="apple-touch-icon" href="https://linnali.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://linnali.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.68.3" />
+
+
+<meta property="og:title" content="Quick reference for Data Analysis with Python" />
+<meta property="og:description" content="Reminder for methods and operations when working with data in Python Pandas" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linnali.com/posts/quick_reference_for_data_analysis_with_python/" />
+<meta property="article:published_time" content="2021-04-24T15:32:59-04:00" />
+<meta property="article:modified_time" content="2021-04-24T15:32:59-04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Quick reference for Data Analysis with Python"/>
+<meta name="twitter:description" content="Reminder for methods and operations when working with data in Python Pandas"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Quick reference for Data Analysis with Python",
+      "item": "https://linnali.com/posts/quick_reference_for_data_analysis_with_python/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Quick reference for Data Analysis with Python",
+  "name": "Quick reference for Data Analysis with Python",
+  "description": "Quick reference for Data Analysis with Python This post is to reference to help those that are familiar with data analysis using python in Jupyter Notebook / Jupyter Lab. If you …",
+  "keywords": [
+    "jupyter notebook", "jupyter lab", "python", "pandas", "matplotlib", "data analysis", "linnacodes", "linnalicodes"
+  ],
+  "articleBody": "Quick reference for Data Analysis with Python This post is to reference to help those that are familiar with data analysis using python in Jupyter Notebook / Jupyter Lab. If you don’t have jupyter notebooks set up you will want to find another tutorial on how to install it and learn the basics of how to use it. Tutorials and references I’ve found helpful is the Data analysis with python content on Freecodecamp , and Data analysis in python on Youtube Corey Schafer on youtube . Popular python libraries for your analysis: numpy, pandas, mtaplotlib, seaborn, statsmodels, scipy, scikit-learn, bokeh(charts that are interactive).\nNumPy NumPy is a Python package for efficiently processing numeric data and work with N-dimensional arrays. Numeric processing in NumPy is much more efficient than processing in vanilla Python. Pandas and Matplotlib is built on top of NumPy. For example a number in Python is about 28 bytes but in NumPy you can specify it to only take up 8 bits or another size. NumPy is optimized for working with arrays, will store values in continuous positions in memory and take advantage of CPU processing capabilities. NumPy is great for storing numbers, dates, booleans, not good for strings and other values.\nNumPy Basics\nimport numpy as np # NumPy arrays are more performant than python arrays a = np.array([0,1,2,3,4,5,6,7,8,9]) # NumPy allows for multi-indexing a[0], a[2], a[-1] # return (0.0, 2.0, 9.0), another numpy array a[[0, 2, -2]] # return same as above a[1:9] # slicing, return array([1,2,3,4,5,6,7,8]) a[::2] # get every 2nd value return array([0,2,4,6,8]) a.dytpe # return dtype['int64'], default is int64 a = array([1,2,3,4,5], dypte=np.int8) # indicate type when creating array a.sum() a.mean() a.std() a.var() # Work with multi-dimensional arrays, children dimensions should be the same shape A = np.array([ [0,1,2], [3,4,5], [6,7,8] ]) A[1] = np.array([10,10,10]) # will assign index 1 of A to be [10,10,10] A[2] = 99 # will assign index 2 of A to be [99,99,99], expand to fit shape A.shape A.ndim A.size A[d1:number][d2:number] # can select similar to Python arrays  A[d1:number, d2:number] # but can also select within a single square bracket A.sum() # returns sum of all values in A A.mean() A.std() A.sum(axis=0) # return sum by column A.sum(axis=1) # return sum by row # Others np.arange(10).reshape(2,5) # change shape of initialized array np.linspace(0,1,5) np.zeros((5,3), dtype=np.int) np.ones((3,3)) np.empty(10) Vectorized operations\na = np.arange(4) # array([0,1,2,3]) a+10 # array[10,11,12,13], works with subtraction(-), multiplication(*)...etc # arrays are immutable, creating new array and returning the new array.  b = np.array([5,10,15,20]) a+b # array([5,11,17,23]), adds corresponding values, shape has to be the same a[[True,False,True,False]] # selects values that are True return array([0,2]) a_filter = a=2 # returns a boolean array that you can use to filter, and use and \u0026 / or | operators to chain conditions a[a_filter] # return array([2,3]) #Linear algebra A = np.array([ [1,2,3], [4,5,6], [7,8,9] ]) B = np.array([ [6,5], [4,3], [2,1] ]) A.dot(B) A @ B # same as A.dot(B) B.T # transpose of B Pandas You can reference the Pandas User Guide for more topics on how to use pandas\nDataframe basics import pandas as pd # Creating Series and Dataframes # Series s = pd.Series([number,number,number,number,number, ...]) s.values # return array([value, value, value, value, ...]) s.index # view the format of the index s.index.tolist() # get list of the index s.index = [\"index_name\", \"index_name\", \"index_name\", \"index_name\", ...] # can assign index to something else # Dataframes df = pd.DataFrame(data_matrix_with_rows_and_columns) df = pd.DataFrame({\"column_name\": your_series, \"column_name\": your_series, ...}) # create dataframe from series # See the first five rows of your dataframe, can include number as parameter to show more your_df.head() #default shows five rows your_df.head(10) #shows ten rows your_df.tail() # Selecting rows and columns,  # Selecting a single row or column returns a Series, selecing multiple rows and/or columns returns a DataFrame your_df.loc[\"row_name\"] # selects a specific row by name your_df.loc[\"row_name\":\"row_name\"] # selects a range of rows by name your_df.iloc[-1] #selects a row by index, in this case it selects the last row your_df[\"column_name\"] # selects a specific column by name your_df[\"column_name\": \"column_name\"] # selects a range of columns, is inclusive # Show information about your dataframe your_df.info() your_df.size your_df.describe() your_df.shape your_df.dtypes your_df[\"column_name\"].mean() your_df[\"column_name\"].median() your_df[\"column_name\"].max() your_df[\"column_name\"].min() your_df[\"column_name\"].unique() your_df.corr() # Get count of unique values for a column your_df[\"column_name\"].value_counts() Filtering and modifying # Get a Series (one column dataframe) and rows are equal to boolean values:  # True if it equals your \"value_your_want_to_match\", otherwise it's False filter_by = your_df[\"column_name\"] == \"value_you_want_to_match\" # can use as filter for your dataframe # Can include multiple conditions filter_by_multiple = condition_one | condition_two \u0026 condition_three your_df[filter_by] # only select rows where corresponding filter_by row is True for the specific \"column_name\" your_df[filter_by_multiple] # Select \"column_name\" columns where row values match filter_by your_df.loc[filter_by, \"column_name\"] # selects 1 column your_df.loc[filter_by, [\"column_name\", \"column_name\", ...]] # selects multiple columns # Select all columns specified where row values match filter_by your_df.loc[filter_by, [\"column_name\", \"column_name\", \"column_name\", ...]] # Operations on columns, need inplace=True to persist change or assign to another variable df.drop(\"row_name\") #drop a single row by name df.drop([\"row_name\", \"row_name\", ...]) # drop multiple rows by name df.drop(columns=[\"column_name\", \"column_name\", ...]) your_df.dropna(axis=\"index\", how=\"all\", subset=[\"column1\", \"column2\"]) df[\"column_name\"].unique() // get unique values of a \"column_name\" column your_df[\"column_name\"].value_counts() // get the counts of unique values of \"column_name\" column your_df.rename(columns={\"column_name\": \"new_column_name\", \"column_name\":\"new_column_name\", ...} index={\"row_name\":\"new_row_name\", \"row_name\": \"new_row_name\", ...}) your_df.set_index(\"column_name\", inplace=True) # sets index to values of a specified column # Create Series your_series = pd.Series( [\"value\", \"value\", \"value\",...], index=[\"row_name\", \"row_name\", \"row_name\",...], name=\"column_name\") # Modfiying data in a Series your_df[\"new_column_name\"] = your_series # this will append your_series as a new column to your_df your_df[\"column_name\"] = value # change all values in column_name to value your_df.iloc[index:number] = value your_df[filter_condition] = value Cleaning and removing missing data\npd.isnull(value_or_series) # True if value is np.nan, None pd.notnull(value_or_series) pd.isna(value_or_series) # same as isnull(), preferred is isnull() pd.notna(value_or_series) pd.isnull(value_or_series).sum() #returns sum of boolean values in Series, True value is 1 and False is 0 your_df.dropna() # Check and remove duplicates your_series.duplicated() # returns a boolean array of whether value is duplicated or not, default is first your_series.duplicated(keep=\"last\") #keep can be first, last, True, or False your_series.duplicated(subset=[\"column_name\"]) your_series.drop_duplicates() Grouping and Aggregating data grouped_df = your_df.groupby([\"column_name\"]) #group data by a \"column_name\" grouped_df.get_group(\"value\") #get all the data filtered by the \"value\" of that column Working with different data types\nyour_df[\"column_name\"] = pd.to_datetime(your_df[\"column_name\"]) # convert column to datetime type # Look up the different methods associated with each data type.  # String methods include most of those used in Python such as split, replace, contain, ...etc your_df[\"column_name_of_datetime_data\"].dt.datetime_method() your_df[\"column_name_of_string_data\"].str.string_method() your_df[\"column_name_of_category_data\"].cat.category_method() Reading from a csv\n# Reading csv files your_df = pd.read_csv(\"path_to_file.csv\", index_col=\"column_name\", header=None, names=[\"column_name\", ...], parse_dates=True) pd.set_option(\"display.max_columns\", 100) pd.read_csv? # prints out all the paramaters for read_csv() pd.to_csv(\"path_to_output.csv\") # Importing without pandas import csv with open(\"file_name.csv\", 'r') as fp: reader = csv.reader(fp, delimiter=\",\") next(reader) for index, values in enumerate(reader): col1, col2, col3 = values print(col1,col2,col3) Reading from a database import sqlite3 # Can connect to almost all databases - mySQL, postgres, sqlite, ... etc conn = sqlite3.connect(\"data/database_name.db\") your_df = pd.read_sql('''YOUR_SQL_QUERY''', conn, index_col=\"name_of_col_for_index\", parse_dates=[\"column_name_where_data_is_date\", \"column_name_where_data_is_date\", ...]) from sqlalchemy import create_engine engine = create_engine(\"sqlite:///database_file.db\") connection = engine.connect() your_df = pd.read_sql_table(\"table_name\", con=connection) connection.close() your_df.to_sql? # check out how to write to the sql database Reading from an api and html import requests from IPython.core.display import display, HTML url = \"https://address_of_your_api_and_any_query_parameters\" data = requests.get(url, params={\"key_name\": \"value\", \"key_name\": \"value\", ...}).json() # Columns parameter is to let you name the columns for the data object your_df = pd.DataFrame(data, columns={\"column_name\", \"column_name\", ...}) display(HTML(url)) # where url returns a html template string your_df = pd.read_html(url) Working with Excel your_df = pd.read_excel(\"name_of_spreadsheet.xlsx\") excel_file = pd.ExcelFile(\"name_of_spreadsheet.xlsx\") # for parsing information  excel_file.sheet_names # see list of sheet names excel.parse(\"sheet_name\") # get the dataframe from selected sheet_name your_df.to_excel() writer = pd.ExcelWriter(\"name_of_spreadsheet.xlsx\") your_df.to_excel(writer, sheet_name=\"name_of_sheet_in_spreadsheet\") writer.save() Plotting basics import matplotlib as plt Plotting graphs by individual column, graphs by multiple individual columns, graphs with two different columns as x and y, and graphs where data is grouped together by column value.\n# You can plot simply by calling plot method on dataframe  your_df.plot() # type_of_plot include bar, density, box, pie, hist, scatter, ... etc your_df[\"column_name\"].plot(kind=\"type_of_plot\", vert=\"boolean_value\", figsize=(width:number,height:number)) # plotting multiple columns individually plot_cols = [\"column_name\", \"column_name\", \"column_name\" ...] your_df[plot_cols].plot(kind=\"type_of_plot\", subplots=\"boolean_value\", layout=(col:number, row:number), figsize=(width:number, height:number)) # plotting two different columns with x and y your_df.plot(kind=\"type_of_plot\", x=\"column_name\", y=\"column_name\", figsize=(width:number, height:number)) # plot by grouping  plot = your_df[[\"column_name\", \"column_name\"]].type_of_plot_function(by=\"column_name\", figsiz=(width:number, height:number)) plot.set_ylabel(\"label_name\") plot.set_xlabel(\"label_name\") # This example is graphing correlation between two columns corr = your_df.corr() plt.figure(fisize=(width:number,height:number)) plt.matshow(corr, cmap=\"RdBu\", fignum=fig.number) plt.xticks(range(len(corr.columns)), corr.columns, rotation=\"vertical\"); plt.yticks(range(len(corr.columns)), corr.columns); # Can initialize number of rows with nrows and number of columns with ncols plt_obj = plt.subplots(nrows=number, ncols=number, figsize=(width:number,height:number)) fig, ((axes1, axes2, ...), (axes21, axes22, ...)) = plt_obj # Different types of plots, some examples below: plt.hist() plt.scatter() plt.bar() plt.boxplot() ",
+  "wordCount" : "1449",
+  "inLanguage": "en",
+  "datePublished": "2021-04-24T15:32:59-04:00",
+  "dateModified": "2021-04-24T15:32:59-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Linna Li"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://linnali.com/posts/quick_reference_for_data_analysis_with_python/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Linna Li",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://linnali.com/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://linnali.com/" accesskey="h" title="Linna Li (Alt + H)">Linna Li</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                
+                
+            </span>
+        </div>
+        <ul id="menu" onscroll="menu_on_scroll()">
+            <li>
+                <a href="https://linnali.com/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://linnali.com/archives" title="All Posts">
+                    <span>All Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://linnali.com/categories" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://linnali.com/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://linnali.com/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+<div class="breadcrumbs">
+
+    <a href="https://linnali.com/">Home</a>
+</div>
+
+    <h1 class="post-title">
+      Quick reference for Data Analysis with Python
+    </h1>
+    <div class="post-description">
+      Reminder for methods and operations when working with data in Python Pandas
+    </div>
+    <div class="post-meta">
+
+April 24, 2021&nbsp;·&nbsp;Linna Li
+
+</div>
+  </header> 
+
+  <div class="toc">
+    <details >
+      <summary accesskey="c" title="(Alt + C)">
+        <div class="details">Table of Contents</div>
+      </summary>
+      <div class="inner"><ul><li>
+        <a href="#quick-reference-for-data-analysis-with-python" aria-label="Quick reference for Data Analysis with Python">Quick reference for Data Analysis with Python</a><ul>
+            <li>
+        <a href="#numpy" aria-label="NumPy">NumPy</a></li><li>
+        <a href="#pandas" aria-label="Pandas">Pandas</a><ul>
+            <ul>
+            <li>
+        <a href="#dataframe-basics" aria-label="Dataframe basics"><strong>Dataframe basics</strong></a></li><li>
+        <a href="#filtering-and-modifying" aria-label="Filtering and modifying"><strong>Filtering and modifying</strong></a></li><li>
+        <a href="#grouping-and-aggregating-data" aria-label="Grouping and Aggregating data"><strong>Grouping and Aggregating data</strong></a></li><li>
+        <a href="#reading-from-a-database" aria-label="Reading from a database"><strong>Reading from a database</strong></a></li><li>
+        <a href="#reading-from-an-api-and-html" aria-label="Reading from an api and html"><strong>Reading from an api and html</strong></a></li><li>
+        <a href="#working-with-excel" aria-label="Working with Excel"><strong>Working with Excel</strong></a></li><li>
+        <a href="#plotting-basics" aria-label="Plotting basics"><strong>Plotting basics</strong></a></li></ul>
+</li></ul></ul>
+</li></ul>
+      </div>
+    </details>
+  </div>
+  <div class="post-content">
+<h2 id="quick-reference-for-data-analysis-with-python">Quick reference for Data Analysis with Python<a hidden class="anchor" aria-hidden="true" href="#quick-reference-for-data-analysis-with-python">#</a></h2>
+<p>This post is to reference to help those that are familiar with data analysis using python in Jupyter Notebook /  Jupyter Lab. If you don&rsquo;t have jupyter notebooks set up you will want to find another tutorial on how to install it and learn the basics of how to use it. Tutorials and references I&rsquo;ve found helpful is the <a href="https://www.freecodecamp.org/learn/data-analysis-with-python/" target="_blank">Data analysis with python content on Freecodecamp</a>
+, and <a href="https://www.youtube.com/playlist?list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS" target="_blank">Data analysis in python on Youtube Corey Schafer on youtube</a>
+. Popular python libraries for your analysis: numpy, pandas, mtaplotlib, seaborn, statsmodels, scipy, scikit-learn, bokeh(charts that are interactive).</p>
+<h3 id="numpy">NumPy<a hidden class="anchor" aria-hidden="true" href="#numpy">#</a></h3>
+<p>NumPy is a Python package for efficiently processing numeric data and work with N-dimensional arrays. Numeric processing in NumPy is much more efficient than processing in vanilla Python. Pandas and Matplotlib is built on top of NumPy. For example a number in Python is about 28 bytes but in NumPy you can specify it to only take up 8 bits or another size. NumPy is optimized for working with arrays, will store values in continuous positions in memory and take advantage of CPU processing capabilities. NumPy is great for storing numbers, dates, booleans, not good for strings and other values.</p>
+<p><strong>NumPy Basics</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+
+<span style="color:#75715e"># NumPy arrays are more performant than python arrays</span>
+a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>])
+
+<span style="color:#75715e"># NumPy allows for multi-indexing</span>
+a[<span style="color:#ae81ff">0</span>], a[<span style="color:#ae81ff">2</span>], a[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#75715e"># return (0.0, 2.0, 9.0), another numpy array</span>
+a[[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]] <span style="color:#75715e"># return same as above</span>
+a[<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">9</span>] <span style="color:#75715e"># slicing, return array([1,2,3,4,5,6,7,8])</span>
+a[::<span style="color:#ae81ff">2</span>] <span style="color:#75715e"># get every 2nd value return array([0,2,4,6,8])</span>
+a<span style="color:#f92672">.</span>dytpe <span style="color:#75715e"># return dtype[&#39;int64&#39;], default is int64</span>
+
+a <span style="color:#f92672">=</span> array([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>], dypte<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>int8) <span style="color:#75715e"># indicate type when creating array</span>
+
+a<span style="color:#f92672">.</span>sum()
+a<span style="color:#f92672">.</span>mean()
+a<span style="color:#f92672">.</span>std()
+a<span style="color:#f92672">.</span>var()
+
+<span style="color:#75715e"># Work with multi-dimensional arrays, children dimensions should be the same shape</span>
+A <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([
+    [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],
+    [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>],
+    [<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>]
+])
+
+A[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>]) <span style="color:#75715e"># will assign index 1 of A to be [10,10,10]</span>
+A[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span> <span style="color:#75715e"># will assign index 2 of A to be [99,99,99], expand to fit shape</span>
+
+A<span style="color:#f92672">.</span>shape
+A<span style="color:#f92672">.</span>ndim
+A<span style="color:#f92672">.</span>size
+A[d1:number][d2:number] <span style="color:#75715e"># can select similar to Python arrays </span>
+A[d1:number, d2:number] <span style="color:#75715e"># but can also select within a single square bracket</span>
+
+A<span style="color:#f92672">.</span>sum() <span style="color:#75715e"># returns sum of all values in A</span>
+A<span style="color:#f92672">.</span>mean()
+A<span style="color:#f92672">.</span>std()
+A<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>) <span style="color:#75715e"># return sum by column</span>
+A<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>) <span style="color:#75715e"># return sum by row</span>
+
+<span style="color:#75715e"># Others</span>
+np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span>reshape(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>) <span style="color:#75715e"># change shape of initialized array</span>
+np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>)
+np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>), dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>int)
+np<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>))
+np<span style="color:#f92672">.</span>empty(<span style="color:#ae81ff">10</span>)
+</code></pre></div><p><strong>Vectorized operations</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">4</span>) <span style="color:#75715e"># array([0,1,2,3])</span>
+a<span style="color:#f92672">+</span><span style="color:#ae81ff">10</span> <span style="color:#75715e"># array[10,11,12,13], works with subtraction(-), multiplication(*)...etc</span>
+<span style="color:#75715e"># arrays are immutable, creating new array and returning the new array. </span>
+
+b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">20</span>])
+a<span style="color:#f92672">+</span>b <span style="color:#75715e"># array([5,11,17,23]), adds corresponding values, shape has to be the same</span>
+
+a[[True,False,True,False]] <span style="color:#75715e"># selects values that are True return array([0,2])</span>
+a_filter <span style="color:#f92672">=</span> a<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">2</span> <span style="color:#75715e"># returns a boolean array that you can use to filter, and use and &amp; / or | operators to chain conditions</span>
+a[a_filter] <span style="color:#75715e"># return array([2,3])</span>
+
+<span style="color:#75715e">#Linear algebra</span>
+A <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([
+    [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>],
+    [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>],
+    [<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>]
+])
+B <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([
+    [<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">5</span>],
+    [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>],
+    [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]
+])
+
+A<span style="color:#f92672">.</span>dot(B)
+A <span style="color:#960050;background-color:#1e0010">@</span> B <span style="color:#75715e"># same as A.dot(B)</span>
+B<span style="color:#f92672">.</span>T <span style="color:#75715e"># transpose of B</span>
+
+
+</code></pre></div><h3 id="pandas">Pandas<a hidden class="anchor" aria-hidden="true" href="#pandas">#</a></h3>
+<p>You can reference the <a href="[https://pandas.pydata.org/docs/user_guide/index.html#user-guide">Pandas User Guide</a>
+ for more topics on how to use pandas</p>
+<h5 id="dataframe-basics"><strong>Dataframe basics</strong><a hidden class="anchor" aria-hidden="true" href="#dataframe-basics">#</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Creating Series and Dataframes</span>
+
+<span style="color:#75715e"># Series</span>
+s <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series([number,number,number,number,number, <span style="color:#f92672">...</span>])
+s<span style="color:#f92672">.</span>values <span style="color:#75715e"># return array([value, value, value, value, ...])</span>
+s<span style="color:#f92672">.</span>index <span style="color:#75715e"># view the format of the index</span>
+s<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>tolist() <span style="color:#75715e"># get list of the index</span>
+s<span style="color:#f92672">.</span>index <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;index_name&#34;</span>, <span style="color:#e6db74">&#34;index_name&#34;</span>, <span style="color:#e6db74">&#34;index_name&#34;</span>, <span style="color:#e6db74">&#34;index_name&#34;</span>, <span style="color:#f92672">...</span>] <span style="color:#75715e"># can assign index to something else</span>
+
+<span style="color:#75715e"># Dataframes</span>
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data_matrix_with_rows_and_columns)
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({<span style="color:#e6db74">&#34;column_name&#34;</span>: your_series, <span style="color:#e6db74">&#34;column_name&#34;</span>: your_series, <span style="color:#f92672">...</span>}) <span style="color:#75715e"># create dataframe from series</span>
+
+<span style="color:#75715e"># See the first five rows of your dataframe, can include number as parameter to show more</span>
+your_df<span style="color:#f92672">.</span>head() <span style="color:#75715e">#default shows five rows</span>
+your_df<span style="color:#f92672">.</span>head(<span style="color:#ae81ff">10</span>) <span style="color:#75715e">#shows ten rows</span>
+your_df<span style="color:#f92672">.</span>tail()
+
+<span style="color:#75715e"># Selecting rows and columns, </span>
+<span style="color:#75715e"># Selecting a single row or column returns a Series, selecing multiple rows and/or columns returns a DataFrame</span>
+
+your_df<span style="color:#f92672">.</span>loc[<span style="color:#e6db74">&#34;row_name&#34;</span>] <span style="color:#75715e"># selects a specific row by name</span>
+your_df<span style="color:#f92672">.</span>loc[<span style="color:#e6db74">&#34;row_name&#34;</span>:<span style="color:#e6db74">&#34;row_name&#34;</span>] <span style="color:#75715e"># selects a range of rows by name</span>
+your_df<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#75715e">#selects a row by index, in this case it selects the last row</span>
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>] <span style="color:#75715e"># selects a specific column by name</span>
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>: <span style="color:#e6db74">&#34;column_name&#34;</span>] <span style="color:#75715e"># selects a range of columns, is inclusive</span>
+
+<span style="color:#75715e"># Show information about your dataframe</span>
+your_df<span style="color:#f92672">.</span>info()
+your_df<span style="color:#f92672">.</span>size
+your_df<span style="color:#f92672">.</span>describe()
+your_df<span style="color:#f92672">.</span>shape
+your_df<span style="color:#f92672">.</span>dtypes
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>mean()
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>median()
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>max()
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>min()
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>unique()
+your_df<span style="color:#f92672">.</span>corr()
+
+<span style="color:#75715e"># Get count of unique values for a column</span>
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>value_counts()
+</code></pre></div><h5 id="filtering-and-modifying"><strong>Filtering and modifying</strong><a hidden class="anchor" aria-hidden="true" href="#filtering-and-modifying">#</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Get a Series (one column dataframe) and rows are equal to boolean values: </span>
+
+<span style="color:#75715e"># True if it equals your &#34;value_your_want_to_match&#34;, otherwise it&#39;s False</span>
+filter_by <span style="color:#f92672">=</span> your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;value_you_want_to_match&#34;</span> <span style="color:#75715e"># can use as filter for your dataframe</span>
+
+<span style="color:#75715e"># Can include multiple conditions</span>
+filter_by_multiple <span style="color:#f92672">=</span> condition_one <span style="color:#f92672">|</span> condition_two <span style="color:#f92672">&amp;</span> condition_three
+
+your_df[filter_by] <span style="color:#75715e"># only select rows where corresponding filter_by row is True for the specific &#34;column_name&#34;</span>
+your_df[filter_by_multiple]
+
+<span style="color:#75715e"># Select &#34;column_name&#34; columns where row values match filter_by</span>
+your_df<span style="color:#f92672">.</span>loc[filter_by, <span style="color:#e6db74">&#34;column_name&#34;</span>] <span style="color:#75715e"># selects 1 column</span>
+your_df<span style="color:#f92672">.</span>loc[filter_by, [<span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#f92672">...</span>]] <span style="color:#75715e"># selects multiple columns</span>
+
+<span style="color:#75715e"># Select all columns specified where row values match filter_by</span>
+your_df<span style="color:#f92672">.</span>loc[filter_by, [<span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#f92672">...</span>]] 
+
+<span style="color:#75715e"># Operations on columns, need inplace=True to persist change or assign to another variable</span>
+df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#34;row_name&#34;</span>) <span style="color:#75715e">#drop a single row by name</span>
+df<span style="color:#f92672">.</span>drop([<span style="color:#e6db74">&#34;row_name&#34;</span>, <span style="color:#e6db74">&#34;row_name&#34;</span>, <span style="color:#f92672">...</span>]) <span style="color:#75715e"># drop multiple rows by name</span>
+df<span style="color:#f92672">.</span>drop(columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#f92672">...</span>])
+
+your_df<span style="color:#f92672">.</span>dropna(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;index&#34;</span>, how<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;all&#34;</span>, subset<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;column1&#34;</span>, <span style="color:#e6db74">&#34;column2&#34;</span>])
+df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>unique() <span style="color:#f92672">//</span> get unique values of a <span style="color:#e6db74">&#34;column_name&#34;</span> column
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>value_counts() <span style="color:#f92672">//</span> get the counts of unique values of <span style="color:#e6db74">&#34;column_name&#34;</span> column
+
+your_df<span style="color:#f92672">.</span>rename(columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;column_name&#34;</span>: <span style="color:#e6db74">&#34;new_column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span>:<span style="color:#e6db74">&#34;new_column_name&#34;</span>, <span style="color:#f92672">...</span>}
+               index<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;row_name&#34;</span>:<span style="color:#e6db74">&#34;new_row_name&#34;</span>, <span style="color:#e6db74">&#34;row_name&#34;</span>: <span style="color:#e6db74">&#34;new_row_name&#34;</span>, <span style="color:#f92672">...</span>})
+
+your_df<span style="color:#f92672">.</span>set_index(<span style="color:#e6db74">&#34;column_name&#34;</span>, inplace<span style="color:#f92672">=</span>True) <span style="color:#75715e"># sets index to values of a specified column</span>
+
+<span style="color:#75715e"># Create Series</span>
+your_series <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series(
+[<span style="color:#e6db74">&#34;value&#34;</span>, <span style="color:#e6db74">&#34;value&#34;</span>, <span style="color:#e6db74">&#34;value&#34;</span>,<span style="color:#f92672">...</span>],
+index<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;row_name&#34;</span>, <span style="color:#e6db74">&#34;row_name&#34;</span>, <span style="color:#e6db74">&#34;row_name&#34;</span>,<span style="color:#f92672">...</span>],
+name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;column_name&#34;</span>) 
+
+<span style="color:#75715e"># Modfiying data in a Series</span>
+your_df[<span style="color:#e6db74">&#34;new_column_name&#34;</span>] <span style="color:#f92672">=</span> your_series <span style="color:#75715e"># this will append your_series as a new column to your_df</span>
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>] <span style="color:#f92672">=</span> value <span style="color:#75715e"># change all values in column_name to value</span>
+your_df<span style="color:#f92672">.</span>iloc[index:number] <span style="color:#f92672">=</span> value
+your_df[filter_condition] <span style="color:#f92672">=</span> value
+
+</code></pre></div><p><strong>Cleaning and removing missing data</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pd<span style="color:#f92672">.</span>isnull(value_or_series) <span style="color:#75715e"># True if value is np.nan, None</span>
+pd<span style="color:#f92672">.</span>notnull(value_or_series)
+pd<span style="color:#f92672">.</span>isna(value_or_series) <span style="color:#75715e"># same as isnull(), preferred is isnull()</span>
+pd<span style="color:#f92672">.</span>notna(value_or_series)
+
+pd<span style="color:#f92672">.</span>isnull(value_or_series)<span style="color:#f92672">.</span>sum() <span style="color:#75715e">#returns sum of boolean values in Series, True value is 1 and False is 0</span>
+your_df<span style="color:#f92672">.</span>dropna()
+
+<span style="color:#75715e"># Check and remove duplicates</span>
+your_series<span style="color:#f92672">.</span>duplicated() <span style="color:#75715e"># returns a boolean array of whether value is duplicated or not, default is first</span>
+your_series<span style="color:#f92672">.</span>duplicated(keep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;last&#34;</span>) <span style="color:#75715e">#keep can be first, last, True, or False</span>
+your_series<span style="color:#f92672">.</span>duplicated(subset<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;column_name&#34;</span>])
+your_series<span style="color:#f92672">.</span>drop_duplicates()
+
+</code></pre></div><h5 id="grouping-and-aggregating-data"><strong>Grouping and Aggregating data</strong><a hidden class="anchor" aria-hidden="true" href="#grouping-and-aggregating-data">#</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">grouped_df <span style="color:#f92672">=</span> your_df<span style="color:#f92672">.</span>groupby([<span style="color:#e6db74">&#34;column_name&#34;</span>])  <span style="color:#75715e">#group data by a &#34;column_name&#34;</span>
+grouped_df<span style="color:#f92672">.</span>get_group(<span style="color:#e6db74">&#34;value&#34;</span>) <span style="color:#75715e">#get all the data filtered by the &#34;value&#34; of that column</span>
+</code></pre></div><p><strong>Working with different data types</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>] <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>to_datetime(your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]) <span style="color:#75715e"># convert column to datetime type</span>
+
+<span style="color:#75715e"># Look up the different methods associated with each data type. </span>
+<span style="color:#75715e"># String methods include most of those used in Python such as split, replace, contain, ...etc</span>
+your_df[<span style="color:#e6db74">&#34;column_name_of_datetime_data&#34;</span>]<span style="color:#f92672">.</span>dt<span style="color:#f92672">.</span>datetime_method()
+your_df[<span style="color:#e6db74">&#34;column_name_of_string_data&#34;</span>]<span style="color:#f92672">.</span>str<span style="color:#f92672">.</span>string_method()
+your_df[<span style="color:#e6db74">&#34;column_name_of_category_data&#34;</span>]<span style="color:#f92672">.</span>cat<span style="color:#f92672">.</span>category_method()
+</code></pre></div><p><strong>Reading from a csv</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Reading csv files</span>
+your_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;path_to_file.csv&#34;</span>, index_col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;column_name&#34;</span>, header<span style="color:#f92672">=</span>None, names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#f92672">...</span>], parse_dates<span style="color:#f92672">=</span>True)
+pd<span style="color:#f92672">.</span>set_option(<span style="color:#e6db74">&#34;display.max_columns&#34;</span>, <span style="color:#ae81ff">100</span>)
+pd<span style="color:#f92672">.</span>read_csv<span style="color:#960050;background-color:#1e0010">?</span> <span style="color:#75715e"># prints out all the paramaters for read_csv()</span>
+
+pd<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;path_to_output.csv&#34;</span>)
+
+<span style="color:#75715e"># Importing without pandas</span>
+<span style="color:#f92672">import</span> csv
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;file_name.csv&#34;</span>, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> fp:
+    reader <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>reader(fp, delimiter<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
+    next(reader)
+    <span style="color:#66d9ef">for</span> index, values <span style="color:#f92672">in</span> enumerate(reader):
+        col1, col2, col3 <span style="color:#f92672">=</span> values
+        <span style="color:#66d9ef">print</span>(col1,col2,col3)
+</code></pre></div><h5 id="reading-from-a-database"><strong>Reading from a database</strong><a hidden class="anchor" aria-hidden="true" href="#reading-from-a-database">#</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> sqlite3 
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Can connect to almost all databases - mySQL, postgres, sqlite, ... etc</span>
+conn <span style="color:#f92672">=</span> sqlite3<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;data/database_name.db&#34;</span>)
+
+your_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(<span style="color:#e6db74">&#39;&#39;&#39;YOUR_SQL_QUERY&#39;&#39;&#39;</span>, 
+conn, index_col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name_of_col_for_index&#34;</span>, 
+parse_dates<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;column_name_where_data_is_date&#34;</span>, <span style="color:#e6db74">&#34;column_name_where_data_is_date&#34;</span>, <span style="color:#f92672">...</span>])
+
+<span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+engine <span style="color:#f92672">=</span> create_engine(<span style="color:#e6db74">&#34;sqlite:///database_file.db&#34;</span>)
+connection <span style="color:#f92672">=</span> engine<span style="color:#f92672">.</span>connect()
+your_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql_table(<span style="color:#e6db74">&#34;table_name&#34;</span>, con<span style="color:#f92672">=</span>connection)
+connection<span style="color:#f92672">.</span>close()
+
+your_df<span style="color:#f92672">.</span>to_sql<span style="color:#960050;background-color:#1e0010">?</span> <span style="color:#75715e"># check out how to write to the sql database</span>
+</code></pre></div><h5 id="reading-from-an-api-and-html"><strong>Reading from an api and html</strong><a hidden class="anchor" aria-hidden="true" href="#reading-from-an-api-and-html">#</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">from</span> IPython.core.display <span style="color:#f92672">import</span> display, HTML
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://address_of_your_api_and_any_query_parameters&#34;</span>
+data <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, params<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;key_name&#34;</span>: <span style="color:#e6db74">&#34;value&#34;</span>, <span style="color:#e6db74">&#34;key_name&#34;</span>: <span style="color:#e6db74">&#34;value&#34;</span>, <span style="color:#f92672">...</span>})<span style="color:#f92672">.</span>json()
+<span style="color:#75715e"># Columns parameter is to let you name the columns for the data object</span>
+your_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data, columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#f92672">...</span>})
+
+display(HTML(url)) <span style="color:#75715e"># where url returns a html template string</span>
+your_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_html(url)
+</code></pre></div><h5 id="working-with-excel"><strong>Working with Excel</strong><a hidden class="anchor" aria-hidden="true" href="#working-with-excel">#</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">your_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_excel(<span style="color:#e6db74">&#34;name_of_spreadsheet.xlsx&#34;</span>)
+excel_file <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>ExcelFile(<span style="color:#e6db74">&#34;name_of_spreadsheet.xlsx&#34;</span>) <span style="color:#75715e"># for parsing information </span>
+excel_file<span style="color:#f92672">.</span>sheet_names <span style="color:#75715e"># see list of sheet names</span>
+excel<span style="color:#f92672">.</span>parse(<span style="color:#e6db74">&#34;sheet_name&#34;</span>) <span style="color:#75715e"># get the dataframe from selected sheet_name</span>
+
+your_df<span style="color:#f92672">.</span>to_excel()
+
+writer <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>ExcelWriter(<span style="color:#e6db74">&#34;name_of_spreadsheet.xlsx&#34;</span>)
+your_df<span style="color:#f92672">.</span>to_excel(writer, sheet_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name_of_sheet_in_spreadsheet&#34;</span>)
+writer<span style="color:#f92672">.</span>save()
+</code></pre></div><h5 id="plotting-basics"><strong>Plotting basics</strong><a hidden class="anchor" aria-hidden="true" href="#plotting-basics">#</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> matplotlib <span style="color:#f92672">as</span> plt
+</code></pre></div><p>Plotting graphs by individual column,  graphs by multiple individual columns,  graphs with two different columns as x and y, and graphs where data is grouped together by column value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># You can plot simply by calling plot method on dataframe </span>
+your_df<span style="color:#f92672">.</span>plot()
+
+<span style="color:#75715e"># type_of_plot include bar, density, box, pie, hist, scatter, ... etc</span>
+your_df[<span style="color:#e6db74">&#34;column_name&#34;</span>]<span style="color:#f92672">.</span>plot(kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;type_of_plot&#34;</span>, vert<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;boolean_value&#34;</span>, figsize<span style="color:#f92672">=</span>(width:number,height:number))
+
+<span style="color:#75715e"># plotting multiple columns individually</span>
+plot_cols <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span> <span style="color:#f92672">...</span>]
+your_df[plot_cols]<span style="color:#f92672">.</span>plot(kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;type_of_plot&#34;</span>, subplots<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;boolean_value&#34;</span>, layout<span style="color:#f92672">=</span>(col:number, row:number), figsize<span style="color:#f92672">=</span>(width:number, height:number))
+
+<span style="color:#75715e"># plotting two different columns with x and y</span>
+your_df<span style="color:#f92672">.</span>plot(kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;type_of_plot&#34;</span>, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;column_name&#34;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;column_name&#34;</span>, figsize<span style="color:#f92672">=</span>(width:number, height:number))
+
+<span style="color:#75715e"># plot by grouping </span>
+plot <span style="color:#f92672">=</span> your_df[[<span style="color:#e6db74">&#34;column_name&#34;</span>, <span style="color:#e6db74">&#34;column_name&#34;</span>]]<span style="color:#f92672">.</span>type_of_plot_function(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;column_name&#34;</span>, figsiz<span style="color:#f92672">=</span>(width:number, height:number))
+plot<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#34;label_name&#34;</span>)
+plot<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#34;label_name&#34;</span>)
+
+<span style="color:#75715e"># This example is graphing correlation between two columns</span>
+corr <span style="color:#f92672">=</span> your_df<span style="color:#f92672">.</span>corr()
+plt<span style="color:#f92672">.</span>figure(fisize<span style="color:#f92672">=</span>(width:number,height:number))
+plt<span style="color:#f92672">.</span>matshow(corr, cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;RdBu&#34;</span>, fignum<span style="color:#f92672">=</span>fig<span style="color:#f92672">.</span>number)
+plt<span style="color:#f92672">.</span>xticks(range(len(corr<span style="color:#f92672">.</span>columns)), corr<span style="color:#f92672">.</span>columns, rotation<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vertical&#34;</span>);
+plt<span style="color:#f92672">.</span>yticks(range(len(corr<span style="color:#f92672">.</span>columns)), corr<span style="color:#f92672">.</span>columns);
+
+<span style="color:#75715e"># Can initialize number of rows with nrows and number of columns with ncols</span>
+plt_obj <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(nrows<span style="color:#f92672">=</span>number, ncols<span style="color:#f92672">=</span>number, figsize<span style="color:#f92672">=</span>(width:number,height:number))
+fig, ((axes1, axes2, <span style="color:#f92672">...</span>), (axes21, axes22, <span style="color:#f92672">...</span>)) <span style="color:#f92672">=</span> plt_obj
+
+<span style="color:#75715e"># Different types of plots, some examples below:</span>
+plt<span style="color:#f92672">.</span>hist()
+plt<span style="color:#f92672">.</span>scatter()
+plt<span style="color:#f92672">.</span>bar()
+plt<span style="color:#f92672">.</span>boxplot()
+
+
+
+</code></pre></div>
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://linnali.com/tags/data-analysis/">data analysis</a></li>
+      <li><a href="https://linnali.com/tags/jupyter-lab/">jupyter lab</a></li>
+      <li><a href="https://linnali.com/tags/jupyter-notebook/">jupyter notebook</a></li>
+      <li><a href="https://linnali.com/tags/linnacodes/">linnacodes</a></li>
+      <li><a href="https://linnali.com/tags/linnalicodes/">linnalicodes</a></li>
+      <li><a href="https://linnali.com/tags/matplotlib/">matplotlib</a></li>
+      <li><a href="https://linnali.com/tags/pandas/">pandas</a></li>
+      <li><a href="https://linnali.com/tags/python/">python</a></li>
+    </ul>
+    <nav class="paginav">
+      <a class="next" href="https://linnali.com/posts/configure_token_authentication_for_git_operations_through_github/">
+        <span class="title">Next Page »</span>
+        <br>
+        <span>Configure token authentication for git operations through GitHub</span>
+      </a>
+    </nav>
+
+
+
+
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Quick reference for Data Analysis with Python on twitter"
+        href="https://twitter.com/intent/tweet/?text=Quick%20reference%20for%20Data%20Analysis%20with%20Python&amp;url=https%3a%2f%2flinnali.com%2fposts%2fquick_reference_for_data_analysis_with_python%2f&amp;hashtags=jupyternotebook%2cjupyterlab%2cpython%2cpandas%2cmatplotlib%2cdataanalysis%2clinnacodes%2clinnalicodes">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Quick reference for Data Analysis with Python on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flinnali.com%2fposts%2fquick_reference_for_data_analysis_with_python%2f&amp;title=Quick%20reference%20for%20Data%20Analysis%20with%20Python&amp;summary=Quick%20reference%20for%20Data%20Analysis%20with%20Python&amp;source=https%3a%2f%2flinnali.com%2fposts%2fquick_reference_for_data_analysis_with_python%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Quick reference for Data Analysis with Python on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2flinnali.com%2fposts%2fquick_reference_for_data_analysis_with_python%2f&title=Quick%20reference%20for%20Data%20Analysis%20with%20Python">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Quick reference for Data Analysis with Python on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flinnali.com%2fposts%2fquick_reference_for_data_analysis_with_python%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Quick reference for Data Analysis with Python on whatsapp"
+        href="https://api.whatsapp.com/send?text=Quick%20reference%20for%20Data%20Analysis%20with%20Python%20-%20https%3a%2f%2flinnali.com%2fposts%2fquick_reference_for_data_analysis_with_python%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Quick reference for Data Analysis with Python on telegram"
+        href="https://telegram.me/share/url?text=Quick%20reference%20for%20Data%20Analysis%20with%20Python&amp;url=https%3a%2f%2flinnali.com%2fposts%2fquick_reference_for_data_analysis_with_python%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="https://linnali.com/">Linna Li</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

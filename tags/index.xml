@@ -6,10 +6,82 @@
     <description>Recent content in Tags on Linna Li</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Apr 2021 12:35:19 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 24 Apr 2021 15:32:59 -0400</lastBuildDate>
     
 	<atom:link href="https://linnali.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>data analysis</title>
+      <link>https://linnali.com/tags/data-analysis/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/data-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jupyter lab</title>
+      <link>https://linnali.com/tags/jupyter-lab/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/jupyter-lab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jupyter notebook</title>
+      <link>https://linnali.com/tags/jupyter-notebook/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/jupyter-notebook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linnacodes</title>
+      <link>https://linnali.com/tags/linnacodes/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/linnacodes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linnalicodes</title>
+      <link>https://linnali.com/tags/linnalicodes/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/linnalicodes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>matplotlib</title>
+      <link>https://linnali.com/tags/matplotlib/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/matplotlib/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas</title>
+      <link>https://linnali.com/tags/pandas/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/pandas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://linnali.com/tags/python/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/tags/python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>authentication</title>
@@ -35,24 +107,6 @@
       <pubDate>Fri, 09 Apr 2021 12:35:19 -0400</pubDate>
       
       <guid>https://linnali.com/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linnacodes</title>
-      <link>https://linnali.com/tags/linnacodes/</link>
-      <pubDate>Fri, 09 Apr 2021 12:35:19 -0400</pubDate>
-      
-      <guid>https://linnali.com/tags/linnacodes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linnalicodes</title>
-      <link>https://linnali.com/tags/linnalicodes/</link>
-      <pubDate>Fri, 09 Apr 2021 12:35:19 -0400</pubDate>
-      
-      <guid>https://linnali.com/tags/linnalicodes/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,19 @@
     <description>Recent content in linnacodes on Linna Li</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Apr 2021 12:35:19 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 24 Apr 2021 15:32:59 -0400</lastBuildDate>
     
 	<atom:link href="https://linnali.com/tags/linnacodes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quick reference for Data Analysis with Python</title>
+      <link>https://linnali.com/posts/quick_reference_for_data_analysis_with_python/</link>
+      <pubDate>Sat, 24 Apr 2021 15:32:59 -0400</pubDate>
+      
+      <guid>https://linnali.com/posts/quick_reference_for_data_analysis_with_python/</guid>
+      <description>Quick reference for Data Analysis with Python This post is to reference to help those that are familiar with data analysis using python in Jupyter Notebook / Jupyter Lab. If you don&amp;rsquo;t have jupyter notebooks set up you will want to find another tutorial on how to install it and learn the basics of how to use it. Tutorials and references I&amp;rsquo;ve found helpful is the Data analysis with python content on Freecodecamp , and Data analysis in python on Youtube Corey Schafer on youtube .</description>
+    </item>
     
     <item>
       <title>Configure token authentication for git operations through GitHub</title>
